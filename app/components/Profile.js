@@ -7,9 +7,9 @@ var Notes = require('./Notes/Notes');
 var Profile = React.createClass({
   getInitialState: function(){
     return {
-      notes: [],
-      bios: {},
-      repos: []
+      notes: [1, 2, 3],
+      bio: {name: "dafault name"},
+      repos: ["red", "rep"]
     }
   },
   render: function(){
