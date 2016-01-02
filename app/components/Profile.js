@@ -7,7 +7,7 @@ var ReactFireMixin = require('reactfire');
 var Firebase = require('firebase')
 
 var Profile = React.createClass({
-  mixin: [ReactFireMixin],
+  mixins: [ReactFireMixin],
   getInitialState: function(){
     return {
       notes: [1, 2, 3],
@@ -22,7 +22,7 @@ var Profile = React.createClass({
   },
   componentWillUnmount: function(){
     this.unbind('notes')
-  }
+  },
   render: function(){
     return (
       <div className="row">
