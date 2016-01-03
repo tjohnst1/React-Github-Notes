@@ -24314,14 +24314,39 @@
 	    repos: React.PropTypes.array.isRequired
 	  },
 	  render: function render() {
+	    var repos = this.props.repos.map(function (repo, index) {
+	      return React.createElement(
+	        'li',
+	        { className: 'list-group-item', key: index },
+	        repo.html_url && React.createElement(
+	          'h4',
+	          null,
+	          React.createElement(
+	            'a',
+	            { href: repo.html_url },
+	            repo.name
+	          )
+	        ),
+	        repo.description && React.createElement(
+	          'p',
+	          null,
+	          repo.description
+	        )
+	      );
+	    });
 	    console.log('Repos: ', this.props.repos);
 	    return React.createElement(
 	      'div',
 	      null,
 	      React.createElement(
-	        'p',
+	        'h3',
 	        null,
-	        'Repos'
+	        'User Repos'
+	      ),
+	      React.createElement(
+	        'ul',
+	        { className: 'list-group' },
+	        repos
 	      )
 	    );
 	  }
