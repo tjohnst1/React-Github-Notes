@@ -46,12 +46,17 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1);
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	var ReactDOM = __webpack_require__(158);
 	var Router = __webpack_require__(159).Router;
 	var routes = __webpack_require__(208);
 
-	ReactDOM.render(React.createElement(
+	ReactDOM.render(_react2.default.createElement(
 	  Router,
 	  null,
 	  routes
@@ -24234,6 +24239,12 @@
 
 	'use strict';
 
+	var _helpers = __webpack_require__(220);
+
+	var _helpers2 = _interopRequireDefault(_helpers);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	var React = __webpack_require__(1);
 	var Router = __webpack_require__(159);
 	var Repos = __webpack_require__(213);
@@ -24241,7 +24252,6 @@
 	var Notes = __webpack_require__(215);
 	var ReactFireMixin = __webpack_require__(218);
 	var Firebase = __webpack_require__(219);
-	var helpers = __webpack_require__(220);
 
 	var Profile = React.createClass({
 	  displayName: 'Profile',
@@ -24272,7 +24282,7 @@
 	    var childRef = this.firebaseRef.child(username);
 	    this.bindAsArray(childRef, 'notes');
 
-	    helpers.getGitHubInfo(username).then((function (data) {
+	    (0, _helpers2.default)(username).then((function (data) {
 	      this.setState({
 	        bio: data.bio,
 	        repos: data.repos
@@ -25210,28 +25220,30 @@
 
 	'use strict';
 
-	var axios = __webpack_require__(221);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = getGitHubInfo;
+
+	var _axios = __webpack_require__(221);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getRepos(username) {
-	  return axios.get('https://api.github.com/users/' + username + '/repos');
+	  return _axios2.default.get('https://api.github.com/users/' + username + '/repos');
 	};
 
 	function getUserInfo(username) {
-	  return axios.get('https://api.github.com/users/' + username);
+	  return _axios2.default.get('https://api.github.com/users/' + username);
 	};
 
-	var helpers = {
-	  getGitHubInfo: function getGitHubInfo(username) {
-	    return axios.all([getRepos(username), getUserInfo(username)]).then(function (arr) {
-	      return {
-	        repos: arr[0].data,
-	        bio: arr[1].data
-	      };
-	    });
-	  }
-	};
-
-	module.exports = helpers;
+	function getGitHubInfo(username) {
+	  return _axios2.default.all([getRepos(username), getUserInfo(username)]).then(function (arr) {
+	    return { repos: arr[0].data, bio: arr[1].data };
+	  });
+	}
 
 /***/ },
 /* 221 */
